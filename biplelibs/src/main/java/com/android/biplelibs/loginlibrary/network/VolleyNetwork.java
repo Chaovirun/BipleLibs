@@ -5,6 +5,8 @@ import android.os.Build;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 
+import com.android.biplelibs.loginlibrary.network.internal.NoSSLv3Factory;
+import com.android.biplelibs.loginlibrary.network.internal.OnNetworkListener;
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
@@ -19,8 +21,6 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.virun.loginlibrary.network.internal.NoSSLv3Factory;
-import com.virun.loginlibrary.network.internal.OnNetworkListener;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
