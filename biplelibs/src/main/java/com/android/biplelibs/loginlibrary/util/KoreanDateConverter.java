@@ -1,15 +1,21 @@
 package com.android.biplelibs.loginlibrary.util;
 
+
 public class KoreanDateConverter {
 
     private static String year,month,day;
+    private String date,result="";
 
-    public static String findDayOfWeek(String strDate) {
-        year = strDate.substring(0, 4);
-        month = strDate.substring(4, 6);
-        day = strDate.substring(6, 8);
+    public KoreanDateConverter(String date){
+        this.date = date;
+    }
 
-        String dayOfWeek[] = {
+    public String getKoreaDate() {
+        year = date.substring(0, 4);
+        month = date.substring(4, 6);
+        day = date.substring(6, 8);
+
+        String[] dayOfWeek = {
                 "(일)",
                 "(월)",
                 "(화)",
@@ -18,15 +24,14 @@ public class KoreanDateConverter {
                 "(금)",
                 "(토)"
         };
-        String result="";
 
         int lastTwoDigitofYear = Integer.parseInt(year.substring(2,4));
         int step1 = lastTwoDigitofYear / 4;
         int step2 = lastTwoDigitofYear + step1; // 31
         int codeOfYear = step2 - (step2 / 7 * 7); // 31 - 28
 
-        int codeOfMonths[] = {
-                0,3,3,6,1,4,6,3,5,0,3,5
+        int[] codeOfMonths = {
+                0, 3, 3, 6, 1, 4, 6, 3, 5, 0, 3, 5
         };
         int codeOfMonth = 0;
         for (int i=0;i<codeOfMonths.length;i++){
@@ -35,8 +40,8 @@ public class KoreanDateConverter {
             }
         }
 
-        int codeOfCenturys[]={
-                4,2,0,6,4,2,0
+        int[] codeOfCenturys = {
+                4, 2, 0, 6, 4, 2, 0
                 //17,18,19,20,21,22,23
         };
         int codeOfCentury = 0;
@@ -53,17 +58,23 @@ public class KoreanDateConverter {
                 result = dayOfWeek[i];
             }
         }
-        String date = month + "월" + day + "일" + result;
-
+        String date = month + "월/" + day + "일" + result;
         return date;
     }
+    public String getDate(){
+        return getYear() + " " + getMonth() + " " + day + "일";
+    }
 
-    public static String getKoreaDate(String strDate){
-        year = strDate.substring(0, 4);
-        month = strDate.substring(4, 6);
-        day = strDate.substring(6, 8);
-        String kdate = year + "년" + month + "월" + day + "일";
-        return kdate;
+    public String getYear(){
+        return year + "년";
+    }
+
+    public String getMonth(){
+        return month + "월";
+    }
+
+    public String getDay(){
+        return null;
     }
 
 }

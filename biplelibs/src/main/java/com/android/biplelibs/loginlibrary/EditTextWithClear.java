@@ -28,6 +28,9 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
+
+import com.android.biplelibs.R;
 
 /**
  * Custom view that is an extension of EditText.
@@ -129,6 +132,17 @@ public class EditTextWithClear
             }
         });
 
+        setOnFocusChangeListener(new OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (b){
+                    showClearButton();
+                }else{
+                    hideClearButton();
+                }
+            }
+        });
+
         // If the text changes, show or hide the X (clear) button.
         addTextChangedListener(new TextWatcher() {
             @Override
@@ -140,7 +154,11 @@ public class EditTextWithClear
             @Override
             public void onTextChanged(CharSequence s,
                                       int start, int before, int count) {
-                showClearButton();
+                if (s.length()>0){
+                    showClearButton();
+                }else{
+                    hideClearButton();
+                }
             }
 
             @Override

@@ -21,6 +21,8 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.biplelibs.R;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -343,11 +345,11 @@ public class FlexibleMenu {
                         break;
 
                     case LEFT_ANCHOR:
-                        mPopupWindow.showAsDropDown(anchor, (-anchorLocation[0] / 2) + xoffset_margin, -anchor.getHeight() + yoffset_margin);
+                        mPopupWindow.showAsDropDown(anchor, anchorLocation[0] / 2 + xoffset_margin, -anchor.getHeight() + yoffset_margin);
                         break;
 
                     case RIGHT_ANCHOR:
-                        mPopupWindow.showAsDropDown(anchor, anchor.getWidth() + xoffset_margin, -anchor.getHeight() + yoffset_margin);
+                        mPopupWindow.showAsDropDown(anchor, -anchorLocation[0] / 2 + xoffset_margin, -anchor.getHeight() + yoffset_margin);
                         break;
 
                     case CENTER_ANCHOR:

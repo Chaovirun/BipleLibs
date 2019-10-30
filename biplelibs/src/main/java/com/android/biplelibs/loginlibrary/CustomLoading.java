@@ -10,6 +10,8 @@ import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.util.Log;
 
+import com.android.biplelibs.R;
+
 public class CustomLoading extends AppCompatImageView {
 
     Context context;

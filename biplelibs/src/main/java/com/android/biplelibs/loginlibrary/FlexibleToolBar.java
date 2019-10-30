@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.android.biplelibs.R;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -198,6 +201,7 @@ public class FlexibleToolBar extends Toolbar {
         textView.setTextSize(mTextSize);
         textView.setTextColor((mTextColor > 0 ? ContextCompat.getColor(mContext, mTextColor) : mTextColor));
         textView.setLayoutParams(mParams);
+        textView.setPadding(convertToDP(margin_left), 0, convertToDP(margin_right), 0);
         textView.setGravity(Gravity.CENTER_VERTICAL);
 
         RelativeLayout mMainLayout = new RelativeLayout(mContext);
@@ -219,14 +223,11 @@ public class FlexibleToolBar extends Toolbar {
      */
     public void setToolBarButton(@GroupButton int groupButton, int drawableId, int margin_left, int margin_right) {
         int mViewId = getIndexComponent(groupButton);
-        /*
-         * set margins to text view of the first text index or last index
-         */
-        mParams.setMargins(margin_left, 0, margin_right, 0);
 
         ImageView imageView = new ImageView(mContext);
         imageView.setImageResource(drawableId);
         imageView.setLayoutParams(mParams);
+        imageView.setPadding(convertToDP(margin_left), 0, convertToDP(margin_right), 0);
 
         RelativeLayout mMainLayout = new RelativeLayout(mContext);
         mMainLayout.addView(imageView);
@@ -446,6 +447,13 @@ public class FlexibleToolBar extends Toolbar {
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         params.setMargins(left, top, right, bottom);
         badgeView.setLayoutParams(params);
+    }
+
+    private int convertToDP(int size) {
+        size = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, size, getResources()
+                        .getDisplayMetrics());
+        return size;
     }
 
     /**

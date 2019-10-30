@@ -21,6 +21,8 @@ import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.android.biplelibs.R;
+
 /**
  * Created by maksim on 15.01.16.
  */
@@ -95,6 +97,7 @@ public class PasswordEditText extends AppCompatEditText {
 
     public void initFields(AttributeSet attrs, int defStyleAttr) {
 
+        setTransformationMethod(HelpPassTransform.getInstance(HelpPassTransform.DOT));
         if (attrs != null) {
             TypedArray styledAttributes = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.PasswordEditText, defStyleAttr, 0);
             try {
@@ -155,6 +158,17 @@ public class PasswordEditText extends AppCompatEditText {
                     showPasswordVisibilityIndicator(false);
                 }
 
+            }
+        });
+
+        setOnFocusChangeListener(new OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (b){
+                    showPasswordVisibilityIndicator(true);
+                }else{
+                    showPasswordVisibilityIndicator(false);
+                }
             }
         });
     }
