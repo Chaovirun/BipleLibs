@@ -62,7 +62,7 @@ public class KoreanDateConverter {
         return date;
     }
     public String getDate(){
-        return getYear() + " " + getMonth() + " " + day + "일";
+        return getMonth() + getDay();
     }
 
     public String getYear(){
@@ -74,7 +74,7 @@ public class KoreanDateConverter {
     }
 
     public String getDay(){
-        return null;
+        return day + "일";
     }
 
 }
